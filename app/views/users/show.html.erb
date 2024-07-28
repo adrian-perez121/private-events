@@ -3,7 +3,7 @@
 <span><%= @user.email %></span> <br>
 
 <% if @user == current_user %>
-  <span><%= link_to "Edit Profile", edit_user_registration_path %></span>
+  <span><%= link_to "Edit Profile", edit_user_registration_path %> <%= link_to "Create New Event", new_user_event_path(@user) %></span>
 <% end %>
 
 <h3>Events</h3>
