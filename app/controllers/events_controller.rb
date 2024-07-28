@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
+  before_action :require_user, only: [:new, :create]
 
   def index
     @events = Event.all.includes(:creator)
@@ -27,4 +28,11 @@ class EventsController < ApplicationController
     params.require(:event).permit(:title, :location, :date)
   end
 
+  def require_user
+    if current_user.id == params[:user_id].to_i
+    else
+      flash.notice = "You cannot create an event for someone else"
+      redirect_to root_path
+    end
+  end
 end
