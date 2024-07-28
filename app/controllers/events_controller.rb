@@ -6,6 +6,10 @@ class EventsController < ApplicationController
     @events = Event.all.includes(:creator)
   end
 
+  def show
+    @event = Event.find(params[:id])
+  end
+
   def new
     @user = User.find(params[:user_id])
     @event = @user.created_events.build

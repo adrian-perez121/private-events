@@ -1,5 +1,5 @@
 <div>
-  <h3><%= event.title %></h3>
+  <h3><%= link_to event.title, event_path(event)%></h3>
   <p>
     Created By: <%= link_to event.creator.name, event.creator %> <br>
     Location: <%= event.location %> <br>
