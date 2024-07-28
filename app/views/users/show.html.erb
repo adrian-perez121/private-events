@@ -10,17 +10,9 @@
 <% if @user.created_events.count == 0 %>
   <span> No events created yet! </span>
 <% else %>
-  <% @user.created_events.each do |event| %>
   <ul>
-    <li>
-      <div>
-        <h3><%= event.title %></h3>
-        <p>
-          Location: <%= event.location %> <br>
-          Time: <% event.date %>
-        </p>
-      </div>
-    </li>
-  </ul>
+    <% @user.created_events.each do |event| %>
+      <li><%= render event %></li>
     <% end %>
+  </ul>
 <% end %>
