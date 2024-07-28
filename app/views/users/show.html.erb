@@ -7,11 +7,11 @@
 <% end %>
 
 <h3>Events</h3>
-<% if @user.created_events.count == 0 %>
+<% if @events.count == 0 %>
   <span> No events created yet! </span>
 <% else %>
   <ul>
-    <% @user.created_events.each do |event| %>
+    <% @events.each do |event| %>
       <li><%= render event %></li>
     <% end %>
   </ul>
