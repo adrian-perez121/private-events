@@ -10,6 +10,7 @@ class EventsDetailsController < ApplicationController
       redirect_to root_path
     else
       EventsDetail.create!(attendee_id: @user.id, event_id: @event.id)
+      redirect_to @event
     end
 
   end
