@@ -13,8 +13,15 @@
   <ul>
     <% @events.each do |event| %>
       <li>
-        <%= render event %>
-        <%= link_to 'Edit', edit_user_event_path(@user, event) if @user == current_user %>
+        <% if @user == current_user %>
+          <%= render event %>
+          <%= link_to 'Edit', edit_user_event_path(@user, event)  %>
+          <%= link_to 'Delete', user_event_path(@user, event), data: {
+            turbo_method: :delete,
+            turbo_confirm: 'Are you sure?'
+          }%>
+        <% end %>
+
       </li>
     <% end %>
   </ul>

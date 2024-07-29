@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
-  before_action :require_user, only: [:new, :create, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :require_user, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @past_events = Event.past.includes(:creator).order(date: :desc)
@@ -42,8 +42,14 @@ class EventsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
 
+  def destroy
+    @user = User.find(params[:user_id])
+    @event = Event.find(params[:id])
+    @event.destroy
 
+    redirect_to @user
   end
 
   private

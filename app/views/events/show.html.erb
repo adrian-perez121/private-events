@@ -6,7 +6,13 @@
   <%= button_to "Attend Event", event_events_details_path(@event)%>
 <% end %>
 <div>
-  <%= link_to 'Edit', edit_user_event_path(@event.creator, @event) if @event.creator == current_user %>
+  <% if @event.creator == current_user %>
+    <%= link_to 'Edit', edit_user_event_path(@event.creator, @event) %>
+    <%= link_to 'Delete', user_event_path(@event.creator, @event), data: {
+      turbo_method: :delete,
+      turbo_confirm: 'Are you sure?'
+    }%>
+  <% end %>
 </div>
 <h3>Attendees</h3>
 <ul>
