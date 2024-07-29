@@ -20,6 +20,7 @@ class EventsController < ApplicationController
     @event = @user.created_events.build(event_params)
 
     if @event.save
+      EventsDetail.create(attendee_id: @user.id, event_id: @event.id)
       redirect_to @user
     else
       render :new, status: :unprocessable_entity
