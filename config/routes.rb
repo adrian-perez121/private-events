@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:show] do
-    resources :events, only: [:new, :create] do
-      resources :events_details, only: [:create]
-    end
+    resources :events, only: [:new, :create]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -13,7 +11,9 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
-  resources :events, only: [:index, :show]
+  resources :events, only: [:index, :show] do
+    resources :events_details, only: [:create]
+  end
 
   # Defines the root path route ("/")
   # root "posts#index"
