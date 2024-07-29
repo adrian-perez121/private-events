@@ -1,3 +1,7 @@
 <%= render @event %>
 
-<%= button_to "Attend Event", event_events_details_path(@event)%>
+<% if @attendees.include?(current_user) %>
+  <span>You are already attending this event!</span>
+<% else %>
+  <%= button_to "Attend Event", event_events_details_path(@event)%>
+<% end %>
