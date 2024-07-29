@@ -16,3 +16,10 @@
     <% end %>
   </ul>
 <% end %>
+
+<h3>Attended Events</h3>
+<ul>
+  <% @attended_events.each do |attended_event| %>
+   <li> <%= link_to attended_event.title, event_path(attended_event) %></li>
+  <% end %>
+</ul>
