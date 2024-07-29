@@ -5,3 +5,10 @@
 <% else %>
   <%= button_to "Attend Event", event_events_details_path(@event)%>
 <% end %>
+
+<h3>Attendees</h3>
+<ul>
+  <% @attendees.each do |attendee|%>
+  <li><%= attendee.name %></li>
+  <% end %>
+</ul>
