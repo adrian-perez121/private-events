@@ -12,7 +12,10 @@
 <% else %>
   <ul>
     <% @events.each do |event| %>
-      <li><%= render event %></li>
+      <li>
+        <%= render event %>
+        <%= link_to 'Edit', edit_user_event_path(@user, event) if @user == current_user %>
+      </li>
     <% end %>
   </ul>
 <% end %>

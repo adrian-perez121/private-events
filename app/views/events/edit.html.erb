@@ -1,0 +1,20 @@
+<h3>Edit Your Event</h3>
+
+<%= form_with model: [@user, @event] do |f|%>
+  <div>
+    <%= f.label :title, "Title?" %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div>
+    <%= f.label :location, "Where?" %>
+    <%= f.text_field :location %>
+  </div>
+
+  <div>
+    <%= f.label :date, "When?" %>
+    <%= f.date_field :date %>
+  </div>
+
+  <%= f.submit %>
+<% end %>
