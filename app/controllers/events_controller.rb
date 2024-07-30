@@ -3,8 +3,16 @@ class EventsController < ApplicationController
   before_action :require_user, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @past_events = Event.past.includes(:creator).order(date: :desc)
-    @now_and_future = Event.now_and_future.includes(:creator).order(date: :desc)
+    if user_signed_in?
+      @events = current_user.invited_events
+      @past_events = @events.where('date < ?', Date.today)
+      @now_and_future = @events.where('date >= ?', Date.today)
+    else
+      @past_events = []
+      @now_and_future = []
+    end
+    # @past_events = Event.past.includes(:creator).order(date: :desc)
+    # @now_and_future = Event.now_and_future.includes(:creator).order(date: :desc)
   end
 
   def show

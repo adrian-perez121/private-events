@@ -1,4 +1,9 @@
-<h1>Events</h1>
+<h1>Events You've Been Invited To</h1>
+
+<% unless user_signed_in? %>
+<span>Sign in to see what event's you have been invited to!</span>
+<% end %>
+
 <h3>Upcoming</h3>
 <%= render @now_and_future %>
 <h3>Past</h3>
