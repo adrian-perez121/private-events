@@ -2,9 +2,11 @@
 
 <% if @attendees.include?(current_user) %>
   <span>You are already attending this event!</span>
+  <%= link_to "Unattend", user_event_events_detail_path(current_user, @event), data: { turbo_method: :delete } %>
 <% else %>
   <%= button_to "Attend Event", event_events_details_path(@event)%>
 <% end %>
+
 <div>
   <% if @event.creator == current_user %>
     <%= link_to 'Edit', edit_user_event_path(@event.creator, @event) %>

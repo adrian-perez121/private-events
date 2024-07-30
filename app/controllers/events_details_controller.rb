@@ -14,4 +14,12 @@ class EventsDetailsController < ApplicationController
     end
 
   end
+
+  def destroy
+    @event = Event.find(params[:event_id])
+    @event_detail = EventsDetail.find_by!(attendee_id: params[:user_id], event_id: params[:event_id])
+
+    @event_detail.destroy
+    redirect_to @event
+  end
 end
