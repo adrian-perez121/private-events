@@ -11,6 +11,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @attendees = @event.attendees
     @invited_users = @event.invited_users
+    @not_invited_users = User.not_invited_to_event(params[:id])
   end
 
   def new

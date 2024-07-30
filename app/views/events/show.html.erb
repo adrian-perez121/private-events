@@ -17,6 +17,18 @@
   <% end %>
 </div>
 
+<div>
+  <% if @event.creator == current_user %>
+    <h3>Invite These People</h3>
+    <ul>
+      <% @not_invited_users.each do |user|%>
+        <% next if user == @event.creator %>
+        <li><%= user.name%> </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+
 <h3>Invited</h3>
 <ul>
   <% @invited_users.each do |user| %>
