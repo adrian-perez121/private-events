@@ -59,12 +59,4 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:title, :location, :date)
   end
-
-  def require_user
-    if current_user.id == params[:user_id].to_i
-    else
-      flash.notice = "You cannot create an event for someone else"
-      redirect_to root_path
-    end
-  end
 end
